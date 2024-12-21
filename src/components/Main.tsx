@@ -75,7 +75,7 @@ const Main = () => {
                                     <th scope="col" className="table-cell-head">Country Name</th>
                                     {
                                         breakpoint && breakpoint > 1024 &&
-                                        <th scope="col" className="table-cell-head-head">Country Code</th>
+                                        <th scope="col" className="table-cell-head">Country Code</th>
                                     }
                                     <th scope="col" className="table-cell-head">GDP (current US$)</th>
                                 </tr>

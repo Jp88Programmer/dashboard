@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import { gdp_data_2020 } from '../data/gdp_data_2020'
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface GdpData {
     countryName: string;
@@ -10,9 +11,8 @@ interface GdpData {
 const countryCodeArr = ["USA", "CHN", 'JPN', "DEU", "GBR", "IND", "FRA", "ITA", "CAN", "KOR"];
 const Main = () => {
 
-
+    const breakpoint = useMediaQuery()
     const [countryGdpArr, setCountryGdpArr] = useState<GdpData[]>([]);
-    console.log("🚀 ~ Main ~ countryGdpArr:", countryGdpArr)
 
     const gdpData = async function () {
         try {
@@ -52,8 +52,8 @@ const Main = () => {
 
     return (
         <div className="flex flex-col gap-4 p-10">
-            <h1 className="text-[#da2337] text-2xl font-medium">Economy of India</h1>
-            <p className="para description">The economy of India is a middle income developing market economy. It is the {"world's"}
+            <h1 className="text-[#da2337] md:text-2xl text-lg font-medium">Economy of India</h1>
+            <p className="md:text-base text-sm">The economy of India is a middle income developing market economy. It is the {"world's"}
                 sixth-largest economy by
                 nominal GDP and the third-largest by purchasing power parity (PPP). According to the International Monetary Fund
                 (IMF), on a per capita income basis, India ranked 145th by GDP (nominal) and 122th by GDP (PPP). From
@@ -65,27 +65,31 @@ const Main = () => {
                 Historically, India was the largest economy in the world for most of the two millennia from the 1st until the
                 19th century.</p>
 
-            <div className="flex flex-row gap-10 w-full">
-                {/* <caption className="description">Exports of goods and services (% of GDP) - India</caption> */}
-                <div id="flex w-1/2">
+            <div className="flex flex-col-reverse gap-10 w-full items-start justify-center lg:justify-between 2xl:flex-row">
+                <div className="flex w-full 2xl:w-1/2">
                     {countryGdpArr?.length > 0 &&
-                        <table className="min-w-full divide-y divide-gray-200">
+                        <table className="w-full divide-y divide-gray-200">
                             <thead className="bg-gray-50">
                                 <tr>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-nowrap">Sr No</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-nowrap">Country Name</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-nowrap">Country Code</th>
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-nowrap">GDP (current US$)</th>
+                                    <th scope="col" className="table-cell-head">Sr No</th>
+                                    <th scope="col" className="table-cell-head">Country Name</th>
+                                    {
+                                        breakpoint && breakpoint > 1024 &&
+                                        <th scope="col" className="table-cell-head-head">Country Code</th>
+                                    }
+                                    <th scope="col" className="table-cell-head">GDP (current US$)</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {countryGdpArr.map((country, index) => (
                                     <tr key={index}>
-                                        <th scope="row" className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</th>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{country.countryName}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{country.countryCode}</td>
-                                        {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{country.year2020}</td> */}
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${(country.year2020 / 10e11).toFixed(4)}T</td>
+                                        <th scope="row" className="table-cell font-medium text-gray-900">{index + 1}</th>
+                                        <td className="table-cell text-gray-500">{country.countryName}</td>
+                                        {
+                                            breakpoint && breakpoint > 1024 &&
+                                            <td className="table-cell text-gray-500">{country.countryCode}</td>
+                                        }
+                                        <td className="table-cell text-gray-500">${(country.year2020 / 10e11).toFixed(4)}T</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -94,7 +98,7 @@ const Main = () => {
                 </div>
                 <iframe
                     src="https://data.worldbank.org/share/widget?end=2020&indicators=NE.EXP.GNFS.ZS&locations=IN&start=2020&view=map"
-                    className="w-1/2 min-h-[60vh] h-full"></iframe>
+                    className="w-full md:min-h-[60vh] min-h-[45vh] h-full 2xl:w-1/2"></iframe>
             </div>
         </div>
     )

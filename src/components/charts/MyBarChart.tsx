@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { fetchChartData } from "./barChart";
+import { fetchChartData } from "../../../action/chartAction";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler);
 
@@ -19,13 +19,13 @@ export const options = {
     },
 };
 
-const MyBarChart = ({ yearNo = 5 }) => {
+const MyBarChart = ({ url, yearNo = 5, title }: { url: string, yearNo: number, title: string }) => {
     const [chartData, setChartData] = useState(null);
-    const url = "https://api.worldbank.org/v2/country/IND/indicator/NY.GDP.PCAP.CD?format=json"
+
 
     useEffect(() => {
         const getData = async () => {
-            const data = await fetchChartData(url, yearNo);
+            const data = await fetchChartData({ url, yearNo, title });
             setChartData(data);
         };
         getData();
@@ -40,13 +40,12 @@ const MyBarChart = ({ yearNo = 5 }) => {
             },
             title: {
                 display: true,
-                text: "Chart.js Bar Chart",
             },
         },
     };
 
     return (
-        <div style={{ width: "1000px" }}>
+        <div className="w-full">
             {chartData ? <Bar data={chartData} options={options} /> : <p>Loading...</p>}
         </div>
     );

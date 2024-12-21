@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Scatter } from 'react-chartjs-2';
 import { Chart as ChartJS, LinearScale, PointElement, Tooltip, Legend } from 'chart.js';
-import { fetchChartData } from './barChart';
+import { fetchChartData } from '../../../action/chartAction';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 

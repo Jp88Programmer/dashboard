@@ -1,16 +1,24 @@
-export const fetchChartData = async (url: string, yearNo: number) => {
+export const fetchChartData = async ({
+  url,
+  yearNo,
+  title,
+}: {
+  url: string;
+  yearNo: number;
+  title: string;
+}) => {
   const response = await fetch(url);
   const data = await response.json();
   const chartData = {
     labels: data[1]
-      .slice(0, yearNo)
+      .slice(0, yearNo == 100 ? data[1].length : yearNo)
       .map((item: any) => item.date)
       .reverse(),
     datasets: [
       {
-        label: "GDP per capita (current US$)",
+        label: title,
         data: data[1]
-          .slice(0, yearNo)
+          .slice(0, yearNo == 100 ? data[1].length : yearNo)
           .map((item: any) => item.value)
           .reverse(),
         backgroundColor: [

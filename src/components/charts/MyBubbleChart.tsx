@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { Bar, Bubble } from "react-chartjs-2";
-import { fetchChartData } from "./barChart";
+import { fetchChartData } from "../../../action/chartAction";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler);
 

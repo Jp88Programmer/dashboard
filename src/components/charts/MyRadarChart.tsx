@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Radar } from 'react-chartjs-2';
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
-import { fetchChartData } from './barChart';
+import { fetchChartData } from '../../../action/chartAction';
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 

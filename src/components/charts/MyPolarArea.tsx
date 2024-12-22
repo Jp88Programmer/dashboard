@@ -12,8 +12,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { fetchChartData } from "../../../action/chartAction";
+import { fetchChartData } from "../../action/chartAction";
 import { IChartParams } from "../../types/chartTypes";
+import { Skeleton } from "../ui/skeleton";
 
 ChartJS.register(
   CategoryScale,
@@ -26,12 +27,12 @@ ChartJS.register(
   Legend
 );
 
-const MyPolarArea = ({ url, yearNo = 5, title }: IChartParams) => {
+const MyPolarArea = ({ url, yearNo = 5, title, style }: IChartParams) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchChartData({ url, yearNo, title });
+      const data = await fetchChartData({ url, yearNo, title, style });
       const polarData = {
         labels: data.labels,
         datasets: [
@@ -83,11 +84,31 @@ const MyPolarArea = ({ url, yearNo = 5, title }: IChartParams) => {
   };
 
   return (
-    <div className="w-full">
+    <div
+      className="chart-size"
+      style={style?.height ? { height: style.height } : undefined}
+    >
       {chartData ? (
         <PolarArea data={chartData} options={options} />
       ) : (
-        <p>Loading...</p>
+        <div className="space-y-4 w-full h-full flex flex-col items-center justify-center">
+          <Skeleton className="h-6 w-[250px]" /> {/* Title skeleton */}
+          <div className="relative md:w-[35rem] w-[20rem] aspect-square">
+            <Skeleton className="absolute inset-0 rounded-full" />{" "}
+            {/* Circle skeleton */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Skeleton className="h-[70%] w-[70%] rounded-full" />{" "}
+              {/* Inner circle skeleton */}
+            </div>
+          </div>
+          <div className="flex gap-2 mt-4">
+            {" "}
+            {/* Legend skeleton */}
+            {[1, 2, 3, 4, 5].map((item) => (
+              <Skeleton key={item} className="h-5 w-16" />
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

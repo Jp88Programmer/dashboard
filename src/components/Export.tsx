@@ -13,7 +13,7 @@ import MyBarChart from "./charts/MyBarChart";
 import MyRadarChart from "./charts/MyRadarChart";
 
 const Export = () => {
-  const [yearNos, setYearNos] = useState([5, 5, 5]);
+  const [yearNos, setYearNos] = useState([5, 5, 5, 5]);
 
   const handleYearChange = (index: number, yearNo: number) => {
     const newYearNos = [...yearNos];
@@ -24,7 +24,7 @@ const Export = () => {
     <div className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Export</div>
+          <div className="head-title">Export</div>
           <div>
             Exports are goods and services that are produced in one country and
             sold to buyers in another. Exports, along with imports, make up
@@ -65,7 +65,7 @@ const Export = () => {
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Export volume index</div>
+          <div className="head-title">Export volume index</div>
           <div>
             Export volume indexes are derived from {"UNCTAD's"} volume index
             series and are the ratio of the export value indexes to the
@@ -77,12 +77,15 @@ const Export = () => {
           url={urlForExportVolumeIndex}
           yearNo={yearNos[1]}
           title="Export volume index"
+          style={{
+            pointerRadius: 13,
+          }}
         />
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Export unit value index</div>
+          <div className="head-title">Export unit value index</div>
           <div>
             Unit-values are defined by: trade value / quantity. These
             unit-values are divided by the average unit-value of the previous
@@ -95,12 +98,16 @@ const Export = () => {
           url={urlForExportUnit}
           yearNo={yearNos[2]}
           title="Export unit value index"
+          style={{
+            pointerRadius: 13,
+            tension: 0.8,
+          }}
         />
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">
+          <div className="head-title">
             Exports of goods and services
           </div>
           <div>
@@ -121,7 +128,7 @@ const Export = () => {
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Taxes on exports</div>
+          <div className="head-title">Taxes on exports</div>
           <div>
             Export taxes are taxes on goods or services that become payable when
             the goods leave the economic territory or when the services are
@@ -129,11 +136,15 @@ const Export = () => {
             export monopolies and taxes resulting from multiple exchange rates.
           </div>
         </div>
-        <ButtonGrop index={3} handleYearChange={handleYearChange} />
+        <ButtonGrop index={4} handleYearChange={handleYearChange} />
         <MyLineChart
           url={urlForExportTaxes}
-          yearNo={yearNos[3]}
+          yearNo={yearNos[4]}
           title="Taxes on exports"
+          style={{
+            tension: 0.7,
+            pointerRadius: 13,
+          }}
         />
       </div>
     </div>

@@ -22,7 +22,7 @@ const Import = () => {
     <div className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Import</div>
+          <div className="head-title">Import</div>
           <div>
             An import is a good or service bought in one country that was
             produced in another. Imports and exports are the components of
@@ -58,13 +58,11 @@ const Import = () => {
             src="https://comtrade.tradingeconomics.com/comtrade/share?r=ind&c=0000&v=treemapmarkets&t=1&title="
           ></iframe>
         </div>
-        {/* <ButtonGrop index={1} handleYearChange={handleYearChange} />
-                <MyLineChart url={urlForGdpCapita} yearNo={yearNos[1]} title="GDP per capita(in USD)" /> */}
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Import Price Index</div>
+          <div className="head-title">Import Price Index</div>
           <div>
             Import Price Indices (MPIs) measure changes in the prices of goods
             and services provided by nonresidents (rest of the world) and used
@@ -76,12 +74,15 @@ const Import = () => {
           url={urlForImportVolume}
           yearNo={yearNos[1]}
           title="Import Price Index"
+          style={{
+            pointerRadius: 10,
+          }}
         />
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Import unit value index</div>
+          <div className="head-title">Import unit value index</div>
           <div>
             Unit-values are defined by: trade value / quantity. These
             unit-values are divided by the average unit-value of the previous
@@ -94,12 +95,16 @@ const Import = () => {
           url={urlForImportUnitValue}
           yearNo={yearNos[2]}
           title="Import Volume"
+          style={{
+            fill: true,
+            pointerRadius: 10,
+          }}
         />
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">
+          <div className="head-title">
             Imports of goods and services
           </div>
           <div>

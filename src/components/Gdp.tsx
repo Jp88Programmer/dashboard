@@ -60,11 +60,11 @@ const Gdp = () => {
       {/* GDP per capita(in USD) */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">GDP per capita(in USD)</div>
+          <div className="head-title">GDP per capita(in USD)</div>
           <div>
             Per capita gross domestic product (GDP) is a financial metric that
-            breaks down a country's economic output per person and is calculated
-            by dividing the GDP of a nation by its population.
+            breaks down a {"country's"} economic output per person and is
+            calculated by dividing the GDP of a nation by its population.
           </div>
         </div>
         <ButtonGrop index={1} handleYearChange={handleYearChange} />
@@ -78,7 +78,7 @@ const Gdp = () => {
       {/* Gross fixed capital formation (% of GDP) */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">
+          <div className="head-title">
             Gross fixed capital formation (% of GDP)
           </div>
           <div>
@@ -86,9 +86,9 @@ const Gdp = () => {
             in official national accounts such as the United Nations System of
             National Accounts (UNSNA), National Income and Product Accounts
             (NIPA) and the European System of Accounts (ESA). GFCF is called
-            "gross" because the measure does not make any adjustments to deduct
-            the consumption of fixed capital (depreciation of fixed assets) from
-            the investment figures.
+            {"gross"} because the measure does not make any adjustments to
+            deduct the consumption of fixed capital (depreciation of fixed
+            assets) from the investment figures.
           </div>
         </div>
         <ButtonGrop index={2} handleYearChange={handleYearChange} />
@@ -102,14 +102,14 @@ const Gdp = () => {
       {/* GDP growth (annual %) */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">GDP growth (annual %)</div>
+          <div className="head-title">GDP growth (annual %)</div>
           <div>
             The GDP growth rate compares the year-over-year (or quarterly)
-            change in a country’s economic output to measure how fast an economy
-            is growing. Usually expressed as a percentage rate, this measure is
-            popular for economic policy-makers because GDP growth is thought to
-            be closely connected to key policy targets such as inflation and
-            unemployment rates.
+            change in a {"country’s"} economic output to measure how fast an
+            economy is growing. Usually expressed as a percentage rate, this
+            measure is popular for economic policy-makers because GDP growth is
+            thought to be closely connected to key policy targets such as
+            inflation and unemployment rates.
           </div>
         </div>
         <ButtonGrop index={3} handleYearChange={handleYearChange} />
@@ -117,13 +117,17 @@ const Gdp = () => {
           url={urlForGdpGrowth}
           yearNo={yearNos[3]}
           title="GDP growth (annual %)"
+          style={{
+            fill: true,
+            tension: 0.3,
+          }}
         />
       </div>
 
       {/* GDP per capita growth (annual %) */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">
+          <div className="head-title">
             GDP per capita growth (annual %)
           </div>
           <div>
@@ -147,9 +151,7 @@ const Gdp = () => {
       {/* GDP Purchasing Power Parity (PPP) */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">
-            GDP Purchasing Power Parity (PPP)
-          </div>
+          <div className="head-title">GDP Purchasing Power Parity (PPP)</div>
           <div>
             While not directly a measure of GDP, economists look at purchasing
             power parity (PPP) to see how one {"country’s"} GDP measures up in
@@ -163,6 +165,9 @@ const Gdp = () => {
           url={urlForGdpForPpp}
           yearNo={yearNos[5]}
           title="GDP Purchasing Power Parity (PPP)"
+          style={{
+            tension: 0.5,
+          }}
         />
       </div>
     </div>

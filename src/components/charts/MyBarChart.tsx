@@ -12,8 +12,9 @@ import {
   Filler,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { fetchChartData } from "../../../action/chartAction";
+import { fetchChartData } from "../../action/chartAction";
 import { IChartParams } from "../../types/chartTypes";
+import { Skeleton } from "../ui/skeleton";
 
 ChartJS.register(
   CategoryScale,
@@ -39,7 +40,7 @@ export const options = {
   },
 };
 
-const MyBarChart = ({ url, yearNo = 5, title }: IChartParams) => {
+const MyBarChart = ({ url, yearNo = 5, title, style }: IChartParams) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const MyBarChart = ({ url, yearNo = 5, title }: IChartParams) => {
   }, [url, yearNo]);
 
   const options = {
-    // indexAxis: "y",
+    ...(style?.ind && { indexAxis: style?.ind }),
     responsive: true,
     plugins: {
       legend: {
@@ -68,7 +69,12 @@ const MyBarChart = ({ url, yearNo = 5, title }: IChartParams) => {
       {chartData ? (
         <Bar data={chartData} options={options} />
       ) : (
-        <p>Loading...</p>
+        <div className="space-y-3 w-full h-full p-4">
+          <div className="flex items-center justify-center">
+            <Skeleton className="h-[40px] w-[200px] " />
+          </div>
+          <Skeleton className="md:h-[25rem] h-[15rem] w-full " />
+        </div>
       )}
     </div>
   );

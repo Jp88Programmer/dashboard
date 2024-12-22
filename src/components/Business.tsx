@@ -27,7 +27,7 @@ const Business = () => {
     <div className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Business</div>
+          <div className="head-title">Business</div>
           <div>
             Business economics is a field in applied economics which uses
             economic theory and quantitative methods to analyze business
@@ -53,30 +53,46 @@ const Business = () => {
       <div className="flex flex-col lg:flex-row gap-3 items-center justify-between w-full">
         <div className="flex flex-col gap-4 lg:w-[45%] w-full lg:px-4 px-2 py-2">
           <ButtonGrop index={0} handleYearChange={handleYearChange} />
-          <MyPieChart url={urlForGni} yearNo={yearNos[0]} />
+          <MyPieChart
+            url={urlForGni}
+            yearNo={yearNos[0]}
+            style={{ height: "100%" }}
+          />
         </div>
 
         <div className="flex flex-col gap-4 lg:w-[45%] w-full lg:px-4 px-2 py-2">
           <ButtonGrop index={1} handleYearChange={handleYearChange} />
-          <MyDountChart url={urlForScore} yearNo={yearNos[1]} />
+          <MyDountChart
+            url={urlForScore}
+            yearNo={yearNos[1]}
+            style={{ height: "100%" }}
+          />
         </div>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-3 items-center justify-between w-full">
         <div className="flex flex-col gap-4 lg:w-[45%] w-full lg:px-4 px-2 py-2">
           <ButtonGrop index={2} handleYearChange={handleYearChange} />
-          <MyPieChart url={urlNoOfBusiness} yearNo={yearNos[2]} />
+          <MyPieChart
+            url={urlNoOfBusiness}
+            yearNo={yearNos[2]}
+            style={{ height: "100%" }}
+          />
         </div>
 
         <div className="flex flex-col gap-4 lg:w-[45%] w-full lg:px-4 px-2 py-2">
           <ButtonGrop index={3} handleYearChange={handleYearChange} />
-          <MyDountChart url={urlForDensity} yearNo={yearNos[3]} />
+          <MyDountChart
+            url={urlForDensity}
+            yearNo={yearNos[3]}
+            style={{ height: "100%" }}
+          />
         </div>
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Consumer</div>
+          <div className="head-title">Consumer</div>
           <div>
             A consumer is a person or a group who intends to order, orders, or
             uses purchased goods, products, or services primarily for personal,
@@ -97,7 +113,7 @@ const Business = () => {
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Inflation</div>
+          <div className="head-title">Inflation</div>
           <div>
             Inflation measures how much more expensive a set of goods and
             services has become over a certain period, usually a year. Inflation
@@ -112,12 +128,19 @@ const Business = () => {
           </div>
         </div>
         <ButtonGrop index={5} handleYearChange={handleYearChange} />
-        <MyLineChart url={urlForInflation} yearNo={yearNos[5]} />
+        <MyLineChart
+          url={urlForInflation}
+          yearNo={yearNos[5]}
+          style={{
+            tension: 0.3,
+            pointerRadius: 10,
+          }}
+        />
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 md:text-base text-sm">
-          <div className="text-lg font-medium">Consumer Price Index (CPI)</div>
+          <div className="head-title">Consumer Price Index (CPI)</div>
           <div>
             Consumer Price Index (CPI) is a measure that examines the weighted
             average of prices of a basket of consumer goods and services, such
@@ -133,6 +156,11 @@ const Business = () => {
           url={urlForCpi}
           yearNo={yearNos[6]}
           title="Consumer Price Index (CPI)"
+          style={{
+            fill: true,
+            tension: 0.3,
+            pointerRadius: 10,
+          }}
         />
       </div>
     </div>

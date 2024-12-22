@@ -1,66 +1,31 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { gdp_data_2020 } from "../data/gdp_data_2020";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Skeleton } from "./ui/skeleton";
+import { GdpData } from "@/types/chartTypes";
 
-interface GdpData {
-  countryName: string;
-  countryCode: string;
-  year2020: number;
-}
-const countryCodeArr = [
-  "USA",
-  "CHN",
-  "JPN",
-  "DEU",
-  "GBR",
-  "IND",
-  "FRA",
-  "ITA",
-  "CAN",
-  "KOR",
-];
 const Main = () => {
   const breakpoint = useMediaQuery();
-  const [countryGdpArr, setCountryGdpArr] = useState<GdpData[]>([]);
+  const [countryGdpArr, setCountryGdpArr] = useState<GdpData[]>(gdp_data_2020);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const gdpData = async function () {
-    try {
-      // const res = await fetch("js/gdp_data_2020.json", { method: "GET" });
-      const arrGdp = gdp_data_2020 as GdpData[];
+  const TableSkeleton = () => (
+    <div className="w-full space-y-3">
+      <Skeleton className="h-10 w-full" />
+      {[...Array(7)].map((_, i) => (
+        <Skeleton key={i} className="h-12 w-full" />
+      ))}
+    </div>
+  );
 
-      const top10Gdp = [];
-
-      let i = 50;
-      while (i > 0) {
-        let maxIndex = 0;
-        for (let index = 1; index < arrGdp.length; index++) {
-          if (arrGdp[maxIndex].year2020 < arrGdp[index].year2020)
-            maxIndex = index;
-        }
-
-        const element = arrGdp[maxIndex];
-
-        if (countryCodeArr.includes(element.countryCode))
-          top10Gdp.push(arrGdp[maxIndex]);
-
-        arrGdp.splice(maxIndex, 1);
-        i--;
-      }
-      console.log("🚀 ~ gdpData ~ arrGdp:", arrGdp);
-      setCountryGdpArr(top10Gdp);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    gdpData();
-  }, []);
+  const IframeSkeleton = () => (
+    <Skeleton className="w-full md:min-h-[60vh] min-h-[45vh] h-full 2xl:w-1/2" />
+  );
 
   return (
-    <div className="flex flex-col gap-4 p-10">
-      <h1 className="text-[#da2337] md:text-2xl text-lg font-medium">
+    <div className="flex flex-col gap-4 px-10 py-4">
+      <h1 className="text-[#da2337] md:text-2xl head-title">
         Economy of India
       </h1>
       <p className="md:text-base text-sm">
@@ -81,58 +46,68 @@ const Main = () => {
         world for most of the two millennia from the 1st until the 19th century.
       </p>
 
-      <div className="flex flex-col-reverse gap-10 w-full items-start justify-center lg:justify-between 2xl:flex-row">
+      <div className="flex flex-col-reverse gap-10 w-full h-full items-start justify-center lg:justify-between 2xl:flex-row">
         <div className="flex w-full 2xl:w-1/2">
-          {countryGdpArr?.length > 0 && (
-            <table className="w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="table-cell-head">
-                    Sr No
-                  </th>
-                  <th scope="col" className="table-cell-head">
-                    Country Name
-                  </th>
-                  {breakpoint && breakpoint > 1024 && (
+          {isLoading ? (
+            <TableSkeleton />
+          ) : (
+            <>
+              <table className="w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
                     <th scope="col" className="table-cell-head">
-                      Country Code
+                      Sr No
                     </th>
-                  )}
-                  <th scope="col" className="table-cell-head">
-                    GDP (current US$)
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {countryGdpArr.map((country, index) => (
-                  <tr key={index}>
-                    <th
-                      scope="row"
-                      className="table-cell font-medium text-gray-900"
-                    >
-                      {index + 1}
+                    <th scope="col" className="table-cell-head">
+                      Country Name
                     </th>
-                    <td className="table-cell text-gray-500">
-                      {country.countryName}
-                    </td>
                     {breakpoint && breakpoint > 1024 && (
-                      <td className="table-cell text-gray-500">
-                        {country.countryCode}
-                      </td>
+                      <th scope="col" className="table-cell-head">
+                        Country Code
+                      </th>
                     )}
-                    <td className="table-cell text-gray-500">
-                      ${(country.year2020 / 10e11).toFixed(4)}T
-                    </td>
+                    <th scope="col" className="table-cell-head">
+                      GDP (current US$)
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {countryGdpArr.map((country, index) => (
+                    <tr key={index}>
+                      <th
+                        scope="row"
+                        className="table-cell font-medium text-gray-900"
+                      >
+                        {index + 1}
+                      </th>
+                      <td className="table-cell text-gray-500">
+                        {country.countryName}
+                      </td>
+                      {breakpoint && breakpoint > 1024 && (
+                        <td className="table-cell text-gray-500">
+                          {country.countryCode}
+                        </td>
+                      )}
+                      <td className="table-cell text-gray-500">
+                        ${(country.year2020 / 10e11).toFixed(4)}T
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
           )}
         </div>
-        <iframe
-          src="https://data.worldbank.org/share/widget?end=2020&indicators=NE.EXP.GNFS.ZS&locations=IN&start=2020&view=map"
-          className="w-full md:min-h-[60vh] min-h-[45vh] h-full 2xl:w-1/2"
-        ></iframe>
+        {isLoading ? (
+          <IframeSkeleton />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <iframe
+              src="https://data.worldbank.org/share/widget?end=2020&indicators=NE.EXP.GNFS.ZS&locations=IN&start=2020&view=map"
+              className="w-full md:min-h-[60vh] min-h-[45vh] h-full"
+            ></iframe>
+          </div>
+        )}
       </div>
     </div>
   );

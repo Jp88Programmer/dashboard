@@ -1,12 +1,6 @@
-export const fetchChartData = async ({
-  url,
-  yearNo,
-  // title,
-}: {
-  url: string;
-  yearNo: number;
-  title?: string;
-}) => {
+import { IChartParams } from "@/types/chartTypes";
+
+export const fetchChartData = async ({ url, yearNo, style }: IChartParams) => {
   const response = await fetch(url);
   const data = await response.json();
   const title = data[1][0].indicator.value;
@@ -40,10 +34,10 @@ export const fetchChartData = async ({
           "rgb(153, 102, 255)",
           "rgb(201, 203, 207)",
         ],
-        fill: true,
-        pointRadius: 15,
-        tension: 0.5,
-        spanGaps: true,
+        ...(style?.fill && { fill: true }),
+        pointRadius: style?.pointerRadius || 5,
+        ...(style?.tension && { tension: style?.tension || 0.5 }),
+        ...(style?.spanGaps && { spanGaps: true }),
         pointStyle: ["rect", "circle", "rectRounded", "triangle"],
       },
     ],

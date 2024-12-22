@@ -1,14 +1,15 @@
 export const fetchChartData = async ({
   url,
   yearNo,
-  title,
+  // title,
 }: {
   url: string;
   yearNo: number;
-  title: string;
+  title?: string;
 }) => {
   const response = await fetch(url);
   const data = await response.json();
+  const title = data[1][0].indicator.value;
   const chartData = {
     labels: data[1]
       .slice(0, yearNo == 100 ? data[1].length : yearNo)

@@ -1,9 +1,9 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { fetchChartData } from '../../../action/chartAction';
-import { IChartParams } from '../../types/chartTypes';
+"use client";
+import React, { useEffect, useState } from "react";
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { fetchChartData } from "../../../action/chartAction";
+import { IChartParams } from "../../types/chartTypes";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -22,11 +22,10 @@ const MyPieChart = ({ url, yearNo = 5, title }: IChartParams) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
       },
       title: {
         display: true,
-        text: 'GDP per capita (current US$)',
       },
     },
   };

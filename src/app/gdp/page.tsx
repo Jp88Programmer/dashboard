@@ -1,9 +1,7 @@
 import Gdp from "@/components/Gdp";
 
 const GDPPage: React.FC = () => {
-    return (
-        <Gdp />
-    );
+  return <Gdp />;
 };
 
 export default GDPPage;

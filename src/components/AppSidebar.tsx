@@ -1,4 +1,13 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  Building2,
+  Earth,
+  Factory,
+  FactoryIcon,
+  Home,
+  Import,
+  Inbox,
+  Landmark,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -26,27 +35,27 @@ const items = [
   {
     title: "Import",
     url: "/import",
-    icon: Calendar,
+    icon: Import,
   },
   {
     title: "Export",
     url: "/export",
-    icon: Search,
+    icon: Earth,
   },
   {
     title: "Business & Consumer",
     url: "/business",
-    icon: Settings,
+    icon: FactoryIcon,
   },
   {
     title: "Government",
     url: "goverment",
-    icon: Settings,
+    icon: Landmark,
   },
   {
     title: "Other indicators",
     url: "other",
-    icon: Settings,
+    icon: Building2,
   },
 ];
 
@@ -55,7 +64,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup className="flex flex-col gap-2">
-          <SidebarGroupLabel className="text-xl font-semibold text-black py-6">
+          <SidebarGroupLabel className="text-xl font-semibold text-red-500 py-6">
             Economy Dashboard
           </SidebarGroupLabel>
           <SidebarGroupContent>

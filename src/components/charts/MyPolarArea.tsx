@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { PolarArea } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, CategoryScale, RadialLinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { fetchChartData } from '../../../action/chartAction';
+import { IChartParams } from '../../types/chartTypes';
 
 ChartJS.register(CategoryScale, ArcElement, RadialLinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const MyPolarArea = ({ yearNo = 5 }) => {
+const MyPolarArea = ({ url, yearNo = 5, title }: IChartParams) => {
     const [chartData, setChartData] = useState(null);
-    const url = "https://api.worldbank.org/v2/country/IND/indicator/NY.GDP.PCAP.CD?format=json";
 
     useEffect(() => {
         const getData = async () => {
-            const data = await fetchChartData(url, yearNo);
+            const data = await fetchChartData({ url, yearNo, title });
             const polarData = {
                 labels: data.labels,
                 datasets: [
@@ -65,7 +65,7 @@ const MyPolarArea = ({ yearNo = 5 }) => {
     };
 
     return (
-        <div style={{ width: "1000px" }}>
+        <div className="w-full">
             {chartData ? <PolarArea data={chartData} options={options} /> : <p>Loading...</p>}
         </div>
     );

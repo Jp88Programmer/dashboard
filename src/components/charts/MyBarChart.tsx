@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { fetchChartData } from "../../../action/chartAction";
+import { IChartParams } from "../../types/chartTypes";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler);
 
@@ -19,7 +20,7 @@ export const options = {
     },
 };
 
-const MyBarChart = ({ url, yearNo = 5, title }: { url: string, yearNo: number, title: string }) => {
+const MyBarChart = ({ url, yearNo = 5, title }: IChartParams) => {
     const [chartData, setChartData] = useState(null);
 
 

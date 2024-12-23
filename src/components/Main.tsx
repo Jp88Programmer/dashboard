@@ -7,8 +7,8 @@ import { GdpData } from "@/types/chartTypes";
 
 const Main = () => {
   const breakpoint = useMediaQuery();
-  const [countryGdpArr, setCountryGdpArr] = useState<GdpData[]>(gdp_data_2020);
-  const [isLoading, setIsLoading] = useState(false);
+  const [countryGdpArr] = useState<GdpData[]>(gdp_data_2020);
+  const [isLoading] = useState(false);
 
   const TableSkeleton = () => (
     <div className="w-full space-y-3">

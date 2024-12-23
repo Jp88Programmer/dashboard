@@ -1,20 +1,24 @@
-import { IChartParams } from "@/types/chartTypes";
+import { IChartData, IChartParams } from "@/types/chartTypes";
 
-export const fetchChartData = async ({ url, yearNo, style }: IChartParams) => {
+export const fetchChartData = async ({
+  url,
+  yearNo,
+  style,
+}: IChartParams): Promise<IChartData | null> => {
   const response = await fetch(url);
   const data = await response.json();
   const title = data[1][0].indicator.value;
-  const chartData = {
+  const chartData: IChartData | null = {
     labels: data[1]
       .slice(0, yearNo == 100 ? data[1].length : yearNo)
-      .map((item: any) => item.date)
+      .map((item: { date: string }) => item.date)
       .reverse(),
     datasets: [
       {
         label: title,
         data: data[1]
           .slice(0, yearNo == 100 ? data[1].length : yearNo)
-          .map((item: any) => item.value)
+          .map((item: { value: number }) => item.value)
           .reverse(),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

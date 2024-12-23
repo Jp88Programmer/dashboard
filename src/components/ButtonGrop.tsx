@@ -7,7 +7,7 @@ const ButtonGrop = ({
   handleYearChange,
 }: {
   index: number;
-  handleYearChange: any;
+  handleYearChange: (index: number, yearNo: number) => void;
 }) => {
   return (
     <div className="flex gap-2">

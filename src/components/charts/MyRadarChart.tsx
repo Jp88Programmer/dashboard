@@ -12,7 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { fetchChartData } from "../../action/chartAction";
-import { IChartParams } from "../../types/chartTypes";
+import { IChartData, IChartParams } from "../../types/chartTypes";
 import { Skeleton } from "../ui/skeleton";
 
 ChartJS.register(
@@ -25,7 +25,7 @@ ChartJS.register(
 );
 
 const MyRadarChart = ({ url, yearNo = 5, title, style }: IChartParams) => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState<IChartData | null>(null);
 
   useEffect(() => {
     const getData = async () => {

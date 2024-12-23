@@ -11,9 +11,9 @@ import {
   Legend,
   Filler,
 } from "chart.js";
-import { Bar, Bubble } from "react-chartjs-2";
+import { Bubble } from "react-chartjs-2";
 import { fetchChartData } from "../../action/chartAction";
-import { IChartParams } from "../../types/chartTypes";
+import { IChartData, IChartParams } from "../../types/chartTypes";
 import { Skeleton } from "../ui/skeleton";
 
 ChartJS.register(
@@ -41,7 +41,7 @@ export const options = {
 };
 
 const MyBubbleChart = ({ url, yearNo = 5, title, style }: IChartParams) => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState<IChartData | null>(null);
 
   useEffect(() => {
     const getData = async () => {

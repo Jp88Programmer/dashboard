@@ -15,6 +15,7 @@ import { Bar } from "react-chartjs-2";
 import { fetchChartData } from "../../action/chartAction";
 import { IChartParams } from "../../types/chartTypes";
 import { Skeleton } from "../ui/skeleton";
+import { ChartData } from "chart.js";
 
 ChartJS.register(
   CategoryScale,
@@ -41,18 +42,18 @@ export const options = {
 };
 
 const MyBarChart = ({ url, yearNo = 5, title, style }: IChartParams) => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState<ChartData<"bar"> | null>(null);
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchChartData({ url, yearNo, title });
+      const data: any = await fetchChartData({ url, yearNo, title });
       setChartData(data);
     };
     getData();
   }, [url, yearNo]);
 
   const options = {
-    ...(style?.ind && { indexAxis: style?.ind }),
+    ...(style?.ind && { indexAxis: style.ind as "x" | "y" }),
     responsive: true,
     plugins: {
       legend: {

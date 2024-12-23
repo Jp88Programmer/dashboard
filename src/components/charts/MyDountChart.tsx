@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { fetchChartData } from "../../action/chartAction";
-import { IChartParams } from "../../types/chartTypes";
+import { IChartData, IChartParams } from "../../types/chartTypes";
 import { Skeleton } from "../ui/skeleton";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MyDountChart = ({ url, yearNo = 5, title, style }: IChartParams) => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState<IChartData | null>(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,11 +20,7 @@ const MyDountChart = ({ url, yearNo = 5, title, style }: IChartParams) => {
   }, [url, yearNo]);
 
   const options = {
-    responsive: true,
     plugins: {
-      legend: {
-        position: "top",
-      },
       title: {
         display: true,
       },

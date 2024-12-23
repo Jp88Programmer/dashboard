@@ -89,7 +89,7 @@ const Goverment = () => {
           url={urlHealthExpend}
           yearNo={yearNos[1]}
           style={{
-            pointerRadius: 13,
+            pointerRadius: 10,
           }}
         />
       </div>

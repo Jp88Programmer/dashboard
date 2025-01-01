@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { AppMetadata } from "@/AppMetaData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Economy Dashboard",
-  description:
-    "The economy of India is a middle income developing market economy.p",
+  ...AppMetadata,
 };
 
 export default function RootLayout({

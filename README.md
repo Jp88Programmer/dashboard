@@ -25,6 +25,7 @@ Visit the live application: [Economy Dashboard](https://economy-dashboard-phi.ve
 
 ## 📦 Project Structure
 ```
+
 economy-dashboard/
 ├── src/
 │ ├── action/

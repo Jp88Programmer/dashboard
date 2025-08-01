@@ -2,7 +2,7 @@
 
 A powerful dashboard application for visualizing economic data and trends across different countries.
 
-## 🚀 Live Demo
+## 🚀 Live link
 
 Visit the live application: [Economy Dashboard](https://economy-dashboard-phi.vercel.app/)
 

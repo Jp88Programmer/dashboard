@@ -6,6 +6,7 @@ A powerful dashboard application for visualizing economic data and trends across
 
 Visit the live application: [Economy Dashboard](https://economy-dashboard-phi.vercel.app/)
 
+
 ## 📋 Features
 
 - Interactive charts and visualizations
